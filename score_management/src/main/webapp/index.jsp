@@ -13,7 +13,6 @@
 
 <div class="wrapper">
 
-    <!-- ヘッダー -->
     <div class="header">
         <h1>得点管理システム</h1>
 
@@ -23,10 +22,9 @@
         </div>
     </div>
 
-    <!-- メイン -->
     <div class="main">
 
-        <!-- 左メニュー -->
+        
         <div class="sidebar">
 
             <a href="../main/Menu.action">メニュー</a>
@@ -42,15 +40,13 @@
             <a href="../subject/SubjectList.action">科目管理</a>
 
         </div>
-
-        <!-- コンテンツ領域 -->
+        
         <div class="content">
 
             <div class="page-title">
                 ${pageTitle}
             </div>
 
-            <!-- 各画面の内容を表示 -->
             <jsp:include page="${contentPage}" />
 
         </div>
