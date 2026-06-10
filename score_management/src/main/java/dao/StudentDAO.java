@@ -3,44 +3,43 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import bean.StudentBean;
+import bean.Student;
 
-public class StudentDao {
+public class StudentDAO extends DAO {
 
-    // 学生1件取得
-    public StudentBean findById(int id) {
+    public List<Student> selectAll() throws Exception {
 
-        StudentBean student = null;
+        List<Student> list = new ArrayList<>();
 
-        try {
-            Connection con = DBManager.getConnection();
+        Connection con = getConnection();
 
-            String sql = "SELECT * FROM student WHERE id = ?";
+        PreparedStatement st =
+                con.prepareStatement(
+                    "SELECT * FROM STUDENT ORDER BY NO"
+                );
 
-            PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
 
-            ps.setInt(1, id);
+        while (rs.next()) {
 
-            ResultSet rs = ps.executeQuery();
+            Student s = new Student();
 
-            if (rs.next()) {
+            s.setNo(rs.getString("NO"));
+            s.setName(rs.getString("NAME"));
+            s.setEntYear(rs.getInt("ENT_YEAR"));
+            s.setClassNum(rs.getString("CLASS_NUM"));
+            s.setAttend(rs.getBoolean("IS_ATTEND"));
+            s.setSchoolCd(rs.getString("SCHOOL_CD"));
 
-                student = new StudentBean();
-
-                student.setId(rs.getInt("id"));
-                student.setName(rs.getString("name"));
-                student.setAge(rs.getInt("age"));
-            }
-
-            rs.close();
-            ps.close();
-            con.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            list.add(s);
         }
 
-        return student;
+        rs.close();
+        st.close();
+        con.close();
+
+        return list;
     }
-}

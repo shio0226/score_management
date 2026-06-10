@@ -1,15 +1,35 @@
-<!-- 1:メニュー画面 -->
+<%@ page contentType="text/html; charset=UTF-8" %>
 
-<title>得点管理システム</title>
+<div class="page-title">
+    メニュー
+</div>
 
-<%@ page pageEncoding="UTF-8" %>
+<div class="card-area">
 
-<h2>メニュー画面</h2>
-<hr>
+    <div class="card student">
+        <a href="../student/StudentList.action">
+            学生管理
+        </a>
+    </div>
 
-<a href="<%= request.getContextPath() %>/StudentSearchServlet.action">学生管理</a>
-<a href="<%= request.getContextPath() %>/StudentAddServlet.action">成績管理</a>
-<a href="<%= request.getContextPath() %>/StudentAddServlet.action">成績登録</a>
-<a href="<%= request.getContextPath() %>/StudentAddServlet.action">成績参照</a>
-<a href="<%= request.getContextPath() %>/StudentListServlet.action">科目管理</a>
+    <div class="card score">
 
+        <h3>成績管理</h3>
+
+        <a href="../score/TestRegist.action">
+            成績登録
+        </a>
+
+        <a href="../score/TestList.action">
+            成績参照
+        </a>
+
+    </div>
+
+    <div class="card subject">
+        <a href="../subject/SubjectList.action">
+            科目管理
+        </a>
+    </div>
+
+</div>
